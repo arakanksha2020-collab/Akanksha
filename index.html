@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Design by Desire — Home</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#1C2452}a:hover{color:#3A4793}
+.label{font-family:Outfit,sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.12em}
+.display{font-family:Canela,'Instrument Serif',Georgia,serif;font-style:normal;font-weight:400}
+.sky{background-color:#D6E0EC;background-image:linear-gradient(180deg,#BFD0E4 0%,#DCE5EF 45%,#F3F2EF 100%)}
+.h-stats{position:absolute;left:32px;top:48px;display:flex;flex-direction:column;gap:18px;z-index:2}
+.h-stage{position:relative;height:560px;margin-top:-30px;perspective:1600px;perspective-origin:50% 22%;overflow:hidden}
+.h-bottom{position:relative;z-index:2;margin-top:-250px}
+@media (max-width:900px){.h-bottom{margin-top:0}.h-stats{position:static;flex-direction:row;flex-wrap:wrap;padding-top:24px}.h-stage{height:440px;margin-top:0}}
+.world{--s:1.4;position:absolute;left:60%;top:58%;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(-36deg) scale3d(var(--s),var(--s),var(--s));animation:sway 11s ease-in-out 3.8s infinite alternate}
+@media (max-width:900px){.world{--s:.9;left:50%;top:55%}}
+@keyframes sway{from{transform:rotateX(-14deg) rotateY(-36deg) scale3d(var(--s),var(--s),var(--s))}to{transform:rotateX(-10deg) rotateY(18deg) scale3d(var(--s),var(--s),var(--s))}}
+.pc{position:absolute;left:0;top:0;transform:var(--to);transform-style:preserve-3d;backface-visibility:visible;box-sizing:border-box}
+.run-a .pc{animation:buildA 1.15s cubic-bezier(.2,.8,.2,1) var(--d) both}
+.run-b .pc{animation:buildB 1.15s cubic-bezier(.2,.8,.2,1) var(--d) both}
+@keyframes buildA{0%{transform:var(--from);opacity:0}35%{opacity:1}100%{transform:var(--to);opacity:1}}
+@keyframes buildB{0%{transform:var(--from);opacity:0}35%{opacity:1}100%{transform:var(--to);opacity:1}}
+.tag{opacity:0;animation:fade .6s ease 3.3s forwards}
+@keyframes fade{to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.pc{animation:none !important}.world{animation:none}.tag{opacity:1;animation:none}}
+.clad{background-color:#F1F1EF;background-image:repeating-linear-gradient(90deg,rgba(28,36,82,.07) 0 1px,transparent 1px 12px);border:1px solid #C9CBD3}
+.clad2{background-color:#DADCE2;background-image:repeating-linear-gradient(0deg,rgba(28,36,82,.08) 0 1px,transparent 1px 10px);border:1px solid #B9BCC7}
+.slab{background:#F6F5F2;border:1px solid #C9CBD3}
+.fascia{background:#E6E5E1;border:1px solid #B9BCC7}
+.glass{background-color:#2A3350;background-image:repeating-linear-gradient(90deg,rgba(220,229,239,.55) 0 2px,transparent 2px 46px),linear-gradient(120deg,rgba(220,229,239,.25) 0 30%,transparent 30%);border:3px solid #1C2452}
+.wood{background-color:#A9784F;background-image:repeating-linear-gradient(90deg,#7E5434 0 3px,transparent 3px 9px)}
+.green{background-color:#5E7A4A;background-image:radial-gradient(circle,#7E9A63 0 3px,transparent 3.5px);background-size:9px 9px}
+.deck{background-color:#E2E0DA;background-image:repeating-linear-gradient(0deg,rgba(28,36,82,.07) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(28,36,82,.07) 0 1px,transparent 1px 34px)}
+.pool{background:#8FC3DD;border:3px solid #F6F5F2}
+.lift{transition:transform .2s,box-shadow .2s}
+.lift:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(28,36,82,.12)}
+.tile{transition:transform .2s,outline-color .2s;outline:3px solid transparent;outline-offset:3px}
+.tile:hover{transform:translateY(-3px)}
+.tile-on{outline-color:#1C2452}
+.row-on{background-color:#FFF4D9 !important;border-color:#F2C35B !important}
+.pill-on{background-color:#1C2452 !important;color:#FFFFFF !important;border-color:#1C2452 !important}
+.explore{transition:transform .25s}
+.explore:hover{transform:scale(1.05)}
+.sw-modern{background-color:#E9EAEE;background-image:linear-gradient(90deg,transparent 0 16%,#2A3350 16% 56%,transparent 56%),linear-gradient(0deg,#C9CBD3 0 24%,transparent 24%),linear-gradient(90deg,transparent 0 70%,#A9784F 70% 78%,transparent 78%)}
+.sw-vernacular{background-color:#F0E4CF;background-image:linear-gradient(155deg,#B4532A 0 30%,transparent 30%),linear-gradient(0deg,#C98A55 0 22%,transparent 22%)}
+.sw-brick{background-color:#B05A35;background-image:repeating-linear-gradient(0deg,rgba(255,245,230,.45) 0 2px,transparent 2px 12px),repeating-linear-gradient(90deg,rgba(60,25,10,.18) 0 2px,transparent 2px 34px)}
+.sw-interior{background-color:#F3F2EF;background-image:linear-gradient(0deg,#A9784F 0 20%,transparent 20%),linear-gradient(90deg,transparent 0 62%,#F2C35B 62% 90%,transparent 90%),linear-gradient(0deg,transparent 0 56%,#1C2452 56% 59%,transparent 59%)}
+.sw-contemporary{background-color:#DCE5EF;background-image:radial-gradient(circle at 32% 42%,#F2C35B 0 15%,transparent 16%),linear-gradient(90deg,transparent 0 66%,#1C2452 66%)}
+.sw-courtyard{background-color:#5E7A4A;background-image:radial-gradient(circle,#F3F2EF 0 30%,transparent 31%),radial-gradient(circle,#7E9A63 0 3px,transparent 3.5px);background-size:auto,10px 10px}
+.sw-heritage{background-color:#EFE6D6;background-image:radial-gradient(circle at 50% 100%,transparent 0 36%,#A9784F 37% 44%,transparent 45%),linear-gradient(0deg,#D8C7AC 0 12%,transparent 12%)}
+.sw-earth{background-color:#9C6B45;background-image:repeating-linear-gradient(0deg,#B07E55 0 7px,#8A5A36 7px 14px)}
+input::placeholder{color:#80849A}
+</style>
+</helmet>
+<div style="font-family: Outfit, system-ui, sans-serif; color: #1C2452; background: #FFFFFF; min-height: 100vh">
+
+<!-- HERO -->
+<section id="top" class="sky" style="position: relative; overflow: hidden; border-radius: 0 0 40px 40px">
+<header style="max-width: 1360px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; position: relative; z-index: 3">
+<a href="#top" style="display: flex; align-items: baseline; gap: 6px; color: #1C2452; text-decoration: none">
+<span style="font-weight: 600; font-size: 22px; letter-spacing: -0.3px">Design</span>
+<span class="display" style="font-size: 22px">by</span>
+<span style="font-weight: 600; font-size: 22px; letter-spacing: -0.3px">Desire</span>
+</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; border-radius: 999px; background: rgba(255,255,255,0.7); font-size: 15px; font-weight: 500">
+<a href="#find" style="padding: 10px 16px; border-radius: 999px; color: #1C2452; text-decoration: none">Find experts</a>
+<a href="#styles" style="padding: 10px 16px; border-radius: 999px; color: #1C2452; text-decoration: none">Styles</a>
+<a href="#services" style="padding: 10px 16px; border-radius: 999px; color: #1C2452; text-decoration: none">Services</a>
+<a href="#estimate" style="padding: 10px 16px; border-radius: 999px; color: #1C2452; text-decoration: none">Estimate</a>
+<a href="#vastu" style="padding: 10px 16px; border-radius: 999px; color: #1C2452; text-decoration: none">Vastu AI</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<button type="button" style="font: inherit; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; padding: 0 16px; min-height: 46px; border-radius: 999px; border: 1px solid rgba(28,36,82,0.25); background: rgba(255,255,255,0.7); color: #1C2452; cursor: pointer">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Bhopal</button>
+<button type="button" style="font: inherit; font-size: 15px; font-weight: 600; padding: 0 22px; min-height: 46px; border-radius: 999px; border: none; background: #1C2452; color: #FFFFFF; cursor: pointer">Login</button>
+</div>
+</header>
+
+<div style="position: relative; max-width: 1360px; margin: 0 auto; padding: 0 32px">
+<div class="h-stats">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 28px">08</span><span class="label" style="font-size: 10px; line-height: 1.4; color: #5A5F78">Design<br>styles</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 28px">06</span><span class="label" style="font-size: 10px; line-height: 1.4; color: #5A5F78">Home<br>services</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600; font-size: 28px">24/7</span><span class="label" style="font-size: 10px; line-height: 1.4; color: #5A5F78">Vastu<br>AI advisor</span></div>
+</div>
+<div aria-hidden="true" class="display" style="text-align: center; padding-top: 24px; font-weight: 400; font-size: 170px; line-height: 0.9; letter-spacing: -0.02em; color: #1C2452">Design by <br>Desire</div>
+
+<div class="h-stage" role="img" aria-label="A modern house with light cladding, dark glazing and timber fins assembling floor by floor below the Desire wordmark">
+<div class="world {{runCls}}">
+<div class="pc" style="--to: translate3d(10px,112px,25px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --from: translate3d(10px,112px,25px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --d: 0s; width: 480px; height: 390px; margin: -195px 0 0 -240px; border-radius: 50%; background: radial-gradient(closest-side, rgba(28,36,82,0.25), rgba(28,36,82,0))"></div>
+<div class="pc deck" style="--to: translate3d(10px,111px,25px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --from: translate3d(10px,380px,25px) rotateY(0deg) rotateX(90deg) rotateZ(-22deg); --d: 0.15s; width: 360px; height: 290px; margin: -145px 0 0 -180px; border-radius: 18px"></div>
+<div class="pc pool" style="--to: translate3d(-70px,110px,135px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --from: translate3d(-70px,340px,135px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --d: 0.35s; width: 150px; height: 52px; margin: -26px 0 0 -75px; border-radius: 8px"></div>
+<div class="pc clad" style="--to: translate3d(0px,60px,-85px) rotateY(180deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(0px,40px,-480px) rotateY(180deg) rotateX(-50deg) rotateZ(0deg); --d: 0.55s; width: 260px; height: 100px; margin: -50px 0 0 -130px"></div>
+<div class="pc clad" style="--to: translate3d(-130px,60px,0px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(-500px,40px,0px) rotateY(-90deg) rotateX(0deg) rotateZ(-35deg); --d: 0.7s; width: 170px; height: 100px; margin: -50px 0 0 -85px"></div>
+<div class="pc clad" style="--to: translate3d(130px,60px,0px) rotateY(90deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(500px,40px,0px) rotateY(90deg) rotateX(0deg) rotateZ(35deg); --d: 0.8s; width: 170px; height: 100px; margin: -50px 0 0 -85px"></div>
+<div class="pc glass" style="--to: translate3d(0px,60px,85px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(0px,40px,480px) rotateY(0deg) rotateX(55deg) rotateZ(0deg); --d: 0.95s; width: 260px; height: 100px; margin: -50px 0 0 -130px"></div>
+<div class="pc slab" style="--to: translate3d(10px,10px,10px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --from: translate3d(10px,-330px,10px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --d: 1.2s; width: 310px; height: 210px; margin: -105px 0 0 -155px"></div>
+<div class="pc fascia" style="--to: translate3d(10px,4px,115px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(10px,-336px,115px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 1.2s; width: 310px; height: 12px; margin: -6px 0 0 -155px"></div>
+<div class="pc green" style="--to: translate3d(10px,-4px,110px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(10px,-344px,110px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 1.3s; width: 300px; height: 10px; margin: -5px 0 0 -150px; border-radius: 5px 5px 0 0"></div>
+<div class="pc clad2" style="--to: translate3d(40px,-35px,-55px) rotateY(180deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(40px,-35px,-440px) rotateY(180deg) rotateX(-45deg) rotateZ(0deg); --d: 1.45s; width: 220px; height: 90px; margin: -45px 0 0 -110px"></div>
+<div class="pc clad2" style="--to: translate3d(-70px,-35px,20px) rotateY(-90deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(-460px,-35px,20px) rotateY(-90deg) rotateX(0deg) rotateZ(-30deg); --d: 1.55s; width: 150px; height: 90px; margin: -45px 0 0 -75px"></div>
+<div class="pc clad2" style="--to: translate3d(150px,-35px,20px) rotateY(90deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(510px,-35px,20px) rotateY(90deg) rotateX(0deg) rotateZ(30deg); --d: 1.65s; width: 150px; height: 90px; margin: -45px 0 0 -75px"></div>
+<div class="pc glass" style="--to: translate3d(40px,-35px,95px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(40px,-35px,480px) rotateY(0deg) rotateX(50deg) rotateZ(0deg); --d: 1.75s; width: 220px; height: 90px; margin: -45px 0 0 -110px"></div>
+<div class="pc slab" style="--to: translate3d(40px,-80px,25px) rotateY(0deg) rotateX(90deg) rotateZ(0deg); --from: translate3d(40px,-480px,25px) rotateY(0deg) rotateX(90deg) rotateZ(10deg); --d: 2s; width: 270px; height: 200px; margin: -100px 0 0 -135px"></div>
+<div class="pc fascia" style="--to: translate3d(40px,-86px,125px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(40px,-486px,125px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 2.05s; width: 270px; height: 12px; margin: -6px 0 0 -135px"></div>
+<div class="pc wood" style="--to: translate3d(150px,-35px,98px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(150px,-35px,330px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 2.4s; width: 34px; height: 92px; margin: -46px 0 0 -17px"></div>
+<div class="pc wood" style="--to: translate3d(-110px,60px,88px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(-110px,60px,330px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 2.5s; width: 30px; height: 100px; margin: -50px 0 0 -15px"></div>
+<div class="pc wood" style="--to: translate3d(131px,70px,30px) rotateY(90deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(340px,70px,30px) rotateY(90deg) rotateX(0deg) rotateZ(0deg); --d: 2.6s; width: 40px; height: 80px; margin: -40px 0 0 -20px"></div>
+<div class="pc green" style="--to: translate3d(110px,96px,150px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --from: translate3d(110px,96px,330px) rotateY(0deg) rotateX(0deg) rotateZ(0deg); --d: 2.75s; width: 70px; height: 30px; margin: -15px 0 0 -35px; border-radius: 16px 16px 2px 2px"></div>
+</div>
+<span class="tag" style="position: absolute; right: 6%; top: 18%; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #F2C35B; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M5 10v10M19 10v10M8 6h8"></path></svg>Cantilever roof</span>
+<span class="tag" style="position: absolute; right: 3%; top: 48%; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #F2C35B; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 4v16M10 4v16M14 4v16M18 4v16"></path></svg>Timber fins</span>
+<span class="tag" style="position: absolute; left: 40%; bottom: 8%; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #F2C35B; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 15c2 0 2-1.5 4.5-1.5S9.5 15 12 15s2.5-1.5 4.5-1.5S19 15 21 15M3 19c2 0 2-1.5 4.5-1.5S9.5 19 12 19s2.5-1.5 4.5-1.5S19 19 21 19"></path></svg>Plunge pool</span>
+</div>
+
+<div class="h-bottom" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px; padding-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 460px">
+<h1 style="margin: 0; font-weight: 500; font-size: clamp(36px, 4vw, 56px); line-height: 1.02; letter-spacing: -0.02em">Where <span class="display" style="font-style: italic">desire</span><br>meets home</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #5A5F78">Architects, interior designers, builders and Vastu experts — booked as easily as an appointment.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="#find" class="lift" style="display: inline-flex; align-items: center; gap: 12px; padding: 6px 6px 6px 22px; min-height: 52px; box-sizing: border-box; border-radius: 999px; background: #1C2452; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 500">Book a consult
+<span style="width: 40px; height: 40px; border-radius: 50%; background: #F2C35B; color: #1C2452; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+</a>
+<button type="button" onClick="{{replay}}" style="font: inherit; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; padding: 0 20px; min-height: 52px; border-radius: 999px; border: 1px solid rgba(28,36,82,0.3); background: rgba(255,255,255,0.7); color: #1C2452; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 4v5h5"></path></svg>Build again</button>
+</div>
+</div>
+<a href="#styles" class="explore" aria-label="Explore styles" style="flex: 0 0 auto; width: 148px; height: 148px; border-radius: 50%; background: #1C2452; color: #FFFFFF; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 0 0 10px rgba(28,36,82,0.12)">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+<span style="font-size: 15px; font-weight: 500; letter-spacing: 0.08em">EXPLORE</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- FIND / SEARCH -->
+<section id="find" style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 40px; display: flex; flex-direction: column; gap: 36px">
+<span class="label" style="font-size: 12px; color: #5A5F78">Find your expert</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 48px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.02em">Search the people<br>who <span class="display" style="font-style: italic">build homes</span></h2>
+<div role="tablist" aria-label="Search for" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" class="{{t.cls}}" style="font: inherit; font-size: 15px; font-weight: 500; padding: 0 18px; min-height: 44px; border-radius: 999px; border: 1px solid #DAD8D3; background: #FFFFFF; color: #1C2452; cursor: pointer">{{t.name}}</button>
+</sc-for>
+</div>
+<form role="search" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; border-radius: 28px; background: #F3F2EF">
+<label style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 2px; padding: 10px 18px; border-radius: 22px; background: #FFFFFF">
+<span style="font-size: 12px; font-weight: 600; color: #5A5F78">City</span>
+<input type="text" placeholder="Bhopal" style="font: inherit; font-size: 16px; border: none; outline: none; background: transparent; color: #1C2452; padding: 0">
+</label>
+<label style="flex: 3 1 220px; display: flex; flex-direction: column; gap: 2px; padding: 10px 18px; border-radius: 22px; background: #FFFFFF">
+<span style="font-size: 12px; font-weight: 600; color: #5A5F78">Looking for</span>
+<input type="text" placeholder="{{searchHint}}" style="font: inherit; font-size: 16px; border: none; outline: none; background: transparent; color: #1C2452; padding: 0">
+</label>
+<button type="submit" style="flex: 0 0 auto; font: inherit; font-size: 16px; font-weight: 600; padding: 0 28px; min-height: 60px; border-radius: 22px; border: none; background: #1C2452; color: #FFFFFF; cursor: pointer; display: inline-flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Search</button>
+</form>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px; padding-top: 8px">
+<p style="margin: 0; font-size: 17px; line-height: 1.65">Design by Desire brings every expert your home needs into one place — from the first sketch to the last coat of paint. Compare portfolios, fees and reviews, then book a site visit or an instant video consult.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a href="#services" class="lift" style="display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; min-height: 52px; border-radius: 999px; background: #F2C35B; color: #1C2452; text-decoration: none; font-size: 15px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Instant consult</a>
+<a href="#experts" class="lift" style="display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; min-height: 52px; border-radius: 999px; background: #F2C35B; color: #1C2452; text-decoration: none; font-size: 15px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Site visit</a>
+<a href="#estimate" class="lift" style="display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; min-height: 52px; border-radius: 999px; background: #F2C35B; color: #1C2452; text-decoration: none; font-size: 15px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M8 15h2M12 15h4"></path></svg>Free estimate</a>
+<a href="#vastu" class="lift" style="display: inline-flex; align-items: center; gap: 10px; padding: 0 20px; min-height: 52px; border-radius: 999px; background: #F2C35B; color: #1C2452; text-decoration: none; font-size: 15px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg>Vastu AI</a>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: #5A5F78">Not sure where to start? Ask our Vastu AI, get a free estimate, or let us match you with three experts who fit your style.</p>
+</div>
+</div>
+</section>
+
+<!-- STYLES COLLAGE -->
+<section id="styles" style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; gap: 32px">
+<span class="label" style="font-size: 12px; color: #5A5F78">Step 1 — Choose a style</span>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.02em">A home that<br>feels like <span class="display" style="font-style: italic">you</span></h2>
+<p style="margin: 0; max-width: 500px; font-size: 16px; line-height: 1.65; color: #5A5F78">Tap a style to preview it. Every expert is tagged by the styles they build best, so your matches start here.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 32px; align-items: stretch">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-content: start">
+<sc-for list="{{styles}}" as="item" hint-placeholder-count="8">
+<button type="button" onClick="{{item.pick}}" aria-pressed="{{item.pressed}}" class="tile {{item.cls}}" style="font: inherit; padding: 0; border: none; background: transparent; cursor: pointer; display: flex; flex-direction: column; gap: 8px; text-align: left; color: #1C2452; border-radius: 20px">
+<span class="sw-{{item.id}}" style="display: block; width: 100%; aspect-ratio: 1 / 1; border-radius: 20px"></span>
+<span style="font-size: 13px; font-weight: 500; line-height: 1.3; padding: 0 4px">{{item.name}}</span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; border-radius: 28px; overflow: hidden; background: #F3F2EF">
+<div class="sw-{{sel.id}}" style="height: 340px"></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 26px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 32px; font-weight: 500; letter-spacing: -0.02em">{{sel.name}}</span>
+<span style="font-size: 15px; color: #5A5F78">{{sel.hint}}</span>
+</div>
+<a href="#experts" class="lift" style="display: inline-flex; align-items: center; gap: 12px; padding: 6px 6px 6px 20px; min-height: 52px; box-sizing: border-box; border-radius: 999px; background: #1C2452; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 500">See experts
+<span style="width: 40px; height: 40px; border-radius: 50%; background: #F2C35B; color: #1C2452; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; gap: 28px">
+<span class="label" style="font-size: 12px; color: #5A5F78">Step 2 — Choose a service</span>
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.02em">What do you <span class="display" style="font-style: italic">need</span> done?</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 12px">
+<sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+<button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" class="lift {{s.cls}}" style="font: inherit; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 18px; padding: 16px 16px 16px 22px; min-height: 88px; border-radius: 24px; border: 1.5px solid #F3F2EF; background: #F3F2EF; color: #1C2452">
+<span style="flex: 0 0 auto; font-size: 14px; font-weight: 600; color: #5A5F78">{{s.num}}</span>
+<span style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 19px; font-weight: 500">{{s.name}}</span>
+<span style="font-size: 14px; color: #5A5F78">{{s.hint}}</span>
+</span>
+<sc-if value="{{s.instant}}" hint-placeholder-val="{{ true }}">
+<span style="flex: 0 0 auto; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #E3F1E8; color: #2F6B4F">Instant</span>
+</sc-if>
+<span aria-hidden="true" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 14px 14px 30px; border-radius: 999px; background: #1C2452; color: #FFFFFF">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span class="label" style="font-size: 10px; color: #F2C35B">Your request</span>
+<span style="font-size: 20px; font-weight: 500">{{summary}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="font: inherit; font-size: 15px; font-weight: 500; padding: 0 20px; min-height: 52px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.4); background: transparent; color: #FFFFFF; cursor: pointer">Consult now</button>
+<button type="button" style="font: inherit; font-size: 15px; font-weight: 600; padding: 0 22px; min-height: 52px; border-radius: 999px; border: none; background: #F2C35B; color: #1C2452; cursor: pointer">See matching experts</button>
+</div>
+</div>
+</section>
+
+<!-- EXPERTS -->
+<section id="experts" style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; gap: 28px">
+<span class="label" style="font-size: 12px; color: #5A5F78">Experts near you</span>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.08; letter-spacing: -0.02em">Chosen for your <span class="display" style="font-style: italic">style</span></h2>
+<a href="#experts" style="font-size: 15px; font-weight: 500">View all experts</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px">
+<div class="lift" style="display: flex; flex-direction: column; gap: 14px; padding: 12px 12px 18px; border-radius: 28px; background: #F3F2EF">
+<div class="sw-modern" style="height: 220px; border-radius: 20px"></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 0 8px"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 20px; font-weight: 500">[Expert name]</span><span style="font-size: 14px; color: #5A5F78">Architect · [Years] yrs · [Area]</span></div><span style="align-self: flex-start; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #E3F1E8; color: #2F6B4F">Verified</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 0 8px"><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Modern</span><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Exposed brick</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A5F78; padding: 0 8px"><span><b style="color: #1C2452">[Rating]</b> · [Reviews] reviews</span><span><b style="color: #1C2452">[Fee]</b> / consult</span></div>
+<div style="display: flex; gap: 8px; padding: 0 4px"><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 500; min-height: 48px; border-radius: 999px; border: 1px solid #C9CBD3; background: #FFFFFF; color: #1C2452">Video consult</button><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 600; min-height: 48px; border-radius: 999px; border: none; background: #1C2452; color: #FFFFFF">Book visit</button></div>
+</div>
+<div class="lift" style="display: flex; flex-direction: column; gap: 14px; padding: 12px 12px 18px; border-radius: 28px; background: #F3F2EF">
+<div class="sw-interior" style="height: 220px; border-radius: 20px"></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 0 8px"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 20px; font-weight: 500">[Studio name]</span><span style="font-size: 14px; color: #5A5F78">Interior designer · [Years] yrs · [Area]</span></div><span style="align-self: flex-start; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #E3F1E8; color: #2F6B4F">Verified</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 0 8px"><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Interiors</span><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Modular kitchen</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A5F78; padding: 0 8px"><span><b style="color: #1C2452">[Rating]</b> · [Reviews] reviews</span><span><b style="color: #1C2452">[Fee]</b> / consult</span></div>
+<div style="display: flex; gap: 8px; padding: 0 4px"><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 500; min-height: 48px; border-radius: 999px; border: 1px solid #C9CBD3; background: #FFFFFF; color: #1C2452">Video consult</button><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 600; min-height: 48px; border-radius: 999px; border: none; background: #1C2452; color: #FFFFFF">Book visit</button></div>
+</div>
+<div class="lift" style="display: flex; flex-direction: column; gap: 14px; padding: 12px 12px 18px; border-radius: 28px; background: #F3F2EF">
+<div class="sw-courtyard" style="height: 220px; border-radius: 20px"></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 0 8px"><div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 20px; font-weight: 500">[Expert name]</span><span style="font-size: 14px; color: #5A5F78">Vastu consultant · [Years] yrs · [Area]</span></div><span style="align-self: flex-start; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: #E3F1E8; color: #2F6B4F">Verified</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 0 8px"><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Vastu</span><span style="font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: #F2C35B">Plan review</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A5F78; padding: 0 8px"><span><b style="color: #1C2452">[Rating]</b> · [Reviews] reviews</span><span><b style="color: #1C2452">[Fee]</b> / consult</span></div>
+<div style="display: flex; gap: 8px; padding: 0 4px"><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 500; min-height: 48px; border-radius: 999px; border: 1px solid #C9CBD3; background: #FFFFFF; color: #1C2452">Video consult</button><button type="button" style="flex: 1 1 0; font: inherit; font-size: 15px; font-weight: 600; min-height: 48px; border-radius: 999px; border: none; background: #1C2452; color: #FFFFFF">Book visit</button></div>
+</div>
+</div>
+</section>
+
+<!-- ESTIMATE -->
+<section id="estimate" style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 40px; align-items: center; padding: 48px; border-radius: 36px; background: #F3F2EF">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<span class="label" style="font-size: 12px; color: #5A5F78">Cost estimator</span>
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.08; letter-spacing: -0.02em">Know your <span class="display" style="font-style: italic">budget</span><br>before you book</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #5A5F78">Pick your home size for a room-wise range covering design and execution.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: 28px; background: #FFFFFF">
+<span style="font-size: 14px; font-weight: 600; color: #5A5F78">Home type</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{bhks}}" as="b" hint-placeholder-count="4">
+<button type="button" onClick="{{b.pick}}" class="{{b.cls}}" style="font: inherit; font-size: 15px; font-weight: 500; padding: 0 18px; min-height: 46px; border-radius: 999px; border: 1px solid #DAD8D3; background: #FFFFFF; color: #1C2452; cursor: pointer">{{b.name}}</button>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 22px; border-radius: 20px; background: #FFF4D9">
+<span style="font-size: 15px; color: #5A5F78">Estimated range · <b style="color: #1C2452">{{bhkName}}</b></span>
+<span style="font-size: 26px; font-weight: 600">[₹ range]</span>
+</div>
+<button type="button" style="font: inherit; font-size: 16px; font-weight: 600; min-height: 54px; border-radius: 999px; border: none; background: #1C2452; color: #FFFFFF; cursor: pointer">Get detailed estimate</button>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 40px; display: flex; flex-direction: column; gap: 28px">
+<span class="label" style="font-size: 12px; color: #5A5F78">How it works</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 28px; background: #F3F2EF"><span style="width: 52px; height: 52px; border-radius: 50%; background: #F2C35B; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 17px">01</span><span style="font-size: 20px; font-weight: 500">Search a style</span><span style="font-size: 15px; line-height: 1.6; color: #5A5F78">Modern, vernacular, brick or interiors — in your city.</span></div>
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 28px; background: #F3F2EF"><span style="width: 52px; height: 52px; border-radius: 50%; background: #F2C35B; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 17px">02</span><span style="font-size: 20px; font-weight: 500">Compare experts</span><span style="font-size: 15px; line-height: 1.6; color: #5A5F78">Portfolios, fees, reviews and open slots side by side.</span></div>
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 28px; background: #F3F2EF"><span style="width: 52px; height: 52px; border-radius: 50%; background: #F2C35B; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 17px">03</span><span style="font-size: 20px; font-weight: 500">Book a slot</span><span style="font-size: 15px; line-height: 1.6; color: #5A5F78">Instant video consult, or a site visit on your date.</span></div>
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 28px; background: #F3F2EF"><span style="width: 52px; height: 52px; border-radius: 50%; background: #F2C35B; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 17px">04</span><span style="font-size: 20px; font-weight: 500">Track the build</span><span style="font-size: 15px; line-height: 1.6; color: #5A5F78">Milestones, drawings, payments and chat in one place.</span></div>
+</div>
+</section>
+
+<!-- VASTU AI -->
+<section id="vastu" style="max-width: 1360px; margin: 0 auto; padding: 56px 32px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 40px; padding: 56px; border-radius: 40px; background: #1C2452; color: #FFFFFF">
+<div style="display: flex; flex-direction: column; gap: 22px; justify-content: center">
+<span class="label" style="font-size: 12px; color: #F2C35B">AI agent — Vastu Mitra</span>
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(36px, 4.2vw, 56px); line-height: 1.02; letter-spacing: -0.02em">Your personal<br><span class="display" style="font-style: italic; color: #F2C35B">Vastu advisor</span></h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #D6DBEA; max-width: 520px">Share your plot facing or upload a floor plan. Get dedicated advice on room placement, entrances, interior colours and materials — then hand it to a Vastu expert in one tap.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.1)">Room placement</span>
+<span style="font-size: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.1)">Entrance &amp; facing</span>
+<span style="font-size: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.1)">Interior colours</span>
+<span style="font-size: 14px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.1)">Floor plan review</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 24px; border-radius: 32px; background: #FFFFFF; color: #1C2452">
+<div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid #EDECE8">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 44px; height: 44px; border-radius: 50%; background: #F2C35B; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1C2452" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg></span><span style="font-size: 18px; font-weight: 600">Vastu Mitra</span></div>
+<span style="font-size: 13px; font-weight: 600; color: #2F6B4F">● Online</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{prompts}}" as="p" hint-placeholder-count="4">
+<button type="button" onClick="{{p.pick}}" class="{{p.cls}}" style="font: inherit; font-size: 13px; font-weight: 500; padding: 0 14px; min-height: 40px; border-radius: 999px; border: 1px solid #DAD8D3; background: #FFFFFF; color: #1C2452; cursor: pointer">{{p.q}}</button>
+</sc-for>
+</div>
+<div style="align-self: flex-end; max-width: 80%; padding: 12px 18px; border-radius: 22px 22px 6px 22px; background: #1C2452; color: #FFFFFF; font-size: 15px; line-height: 1.5">{{askQ}}</div>
+<div style="align-self: flex-start; max-width: 92%; padding: 14px 18px; border-radius: 22px 22px 22px 6px; background: #F3F2EF; font-size: 15px; line-height: 1.6; white-space: pre-line">{{askA}}</div>
+<form style="display: flex; gap: 6px; padding: 6px; border-radius: 999px; background: #F3F2EF; margin-top: 4px">
+<label style="flex: 1 1 auto; display: flex">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask Vastu Mitra</span>
+<input type="text" placeholder="Ask about directions, colours, rooms…" style="flex: 1 1 auto; font: inherit; font-size: 15px; padding: 0 16px; min-height: 48px; border: none; outline: none; border-radius: 999px; background: transparent; color: #1C2452">
+</label>
+<button type="button" aria-label="Upload floor plan" style="flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: none; background: #FFFFFF; color: #1C2452; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M12 3v12M7 8l5-5 5 5"></path></svg></button>
+<button type="submit" aria-label="Send" style="flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; border: none; background: #1C2452; color: #FFFFFF; cursor: pointer; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></button>
+</form>
+<span style="font-size: 12px; color: #5A5F78">Guidance follows traditional Vastu Shastra principles. It is advisory, not structural or engineering advice.</span>
+</div>
+</div>
+</section>
+
+<!-- PROS + FOOTER -->
+<section id="pros" style="max-width: 1360px; margin: 0 auto; padding: 56px 32px 64px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 680px">
+<span class="label" style="font-size: 12px; color: #5A5F78">For professionals</span>
+<h2 style="margin: 0; font-weight: 500; font-size: clamp(30px, 3.2vw, 42px); line-height: 1.08; letter-spacing: -0.02em">Architect, designer or builder? Get booked for the work you <span class="display" style="font-style: italic">love</span>.</h2>
+</div>
+<a href="#pros" class="lift" style="display: inline-flex; align-items: center; gap: 12px; padding: 6px 6px 6px 22px; min-height: 56px; box-sizing: border-box; border-radius: 999px; background: #1C2452; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 500">Join as a professional
+<span style="width: 44px; height: 44px; border-radius: 50%; background: #F2C35B; color: #1C2452; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+</a>
+</section>
+<footer style="background: #F3F2EF; border-radius: 40px 40px 0 0">
+<div style="max-width: 1360px; margin: 0 auto; padding: 40px 32px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<span class="display" style="font-weight: 400; font-size: clamp(48px, 9vw, 130px); line-height: 0.9">Design by Desire</span>
+<span style="display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px"><a href="#top">About</a><a href="#top">Help</a><a href="#top">Privacy</a><a href="#top">Terms</a></span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 0, style: 'modern', service: 'architect', bhk: 1, prompt: 0, run: 0 };
+  }
+  renderVals() {
+    const st = this.state;
+    const self = this;
+    const tabList = [
+      { name: 'Architects', hint: 'e.g. modern villa architect' },
+      { name: 'Interior designers', hint: 'e.g. 2 BHK interiors, modular kitchen' },
+      { name: 'Contractors', hint: 'e.g. turnkey G+1 construction' },
+      { name: 'Vastu experts', hint: 'e.g. north-facing plot review' }
+    ];
+    const styleList = [
+      { id: 'modern', name: 'Modern', hint: 'Clean lines, cladding and glass, cantilevered roofs' },
+      { id: 'vernacular', name: 'Vernacular', hint: 'Local materials, sloped roofs, climate-smart planning' },
+      { id: 'brick', name: 'Exposed brick', hint: 'Raw brick, jaali walls and warm textures' },
+      { id: 'interior', name: 'Interiors', hint: 'Living, kitchen and bedroom makeovers' },
+      { id: 'contemporary', name: 'Contemporary Indian', hint: 'Modern plans with Indian craft details' },
+      { id: 'courtyard', name: 'Courtyard & landscape', hint: 'Courtyards, terraces and gardens' },
+      { id: 'heritage', name: 'Heritage restoration', hint: 'Havelis, old homes and lime plaster' },
+      { id: 'earth', name: 'Mud & bamboo', hint: 'Rammed earth, cob and sustainable builds' }
+    ];
+    const serviceList = [
+      { id: 'architect', name: 'Architect consultation', hint: 'Plans, elevations and approvals', instant: true },
+      { id: 'interior', name: 'Interior design', hint: 'Layouts, materials and 3D views', instant: true },
+      { id: 'build', name: 'Construction & contractors', hint: 'Turnkey or labour-only builds', instant: false },
+      { id: 'reno', name: 'Renovation & repair', hint: 'Waterproofing, flooring, upgrades', instant: false },
+      { id: 'vastu', name: 'Vastu consultation', hint: 'Plan review with a Vastu expert', instant: true },
+      { id: 'visit', name: 'Site visit & estimate', hint: 'Measured visit and a costed quote', instant: false }
+    ];
+    const bhkList = ['1 BHK', '2 BHK', '3 BHK', '4+ BHK / Villa'];
+    const promptList = [
+      { q: 'Where should my kitchen be?', a: 'Traditional Vastu places the kitchen in the south-east — the Agni (fire) corner.\nIdeally the cook faces east while cooking.\nIf south-east isn’t possible, north-west is the usual alternative.' },
+      { q: 'Best main entrance direction?', a: 'North, east and north-east entrances are considered the most auspicious.\nKeep the entrance well lit, uncluttered and slightly larger than other doors.\nAvoid placing it directly in line with the back door.' },
+      { q: 'Colours for a north-facing living room?', a: 'North is linked with water and prosperity, so soft greens, pale blues and warm whites suit it well.\nPair with light wood and natural stone.\nAvoid large areas of deep red or black on the north wall.' },
+      { q: 'Where to place the master bedroom?', a: 'The south-west is preferred for the master bedroom — it is seen as stable and grounding.\nPlace the bed so you sleep with your head towards the south.\nWarm neutrals like sand, beige and soft grey work well here.' }
+    ];
+    const sel = styleList.find((x) => x.id === st.style);
+    return {
+      tabs: tabList.map((t, i) => ({ name: t.name, sel: st.tab === i ? 'true' : 'false', cls: st.tab === i ? 'pill-on' : '', pick: () => self.setState({ tab: i }) })),
+      searchHint: tabList[st.tab].hint,
+      styles: styleList.map((x) => ({ ...x, cls: st.style === x.id ? 'tile-on' : '', pressed: st.style === x.id ? 'true' : 'false', pick: () => self.setState({ style: x.id }) })),
+      sel,
+      services: serviceList.map((x, i) => ({ ...x, num: String(i + 1).padStart(2, '0'), cls: st.service === x.id ? 'row-on' : '', pressed: st.service === x.id ? 'true' : 'false', pick: () => self.setState({ service: x.id }) })),
+      summary: sel.name + ' · ' + serviceList.find((x) => x.id === st.service).name,
+      bhks: bhkList.map((b, i) => ({ name: b, cls: st.bhk === i ? 'pill-on' : '', pick: () => self.setState({ bhk: i }) })),
+      bhkName: bhkList[st.bhk],
+      prompts: promptList.map((p, i) => ({ q: p.q, cls: st.prompt === i ? 'pill-on' : '', pick: () => self.setState({ prompt: i }) })),
+      askQ: promptList[st.prompt].q,
+      askA: promptList[st.prompt].a,
+      runCls: st.run % 2 === 0 ? 'run-a' : 'run-b',
+      replay: () => self.setState({ run: st.run + 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>
